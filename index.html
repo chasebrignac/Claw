@@ -534,6 +534,21 @@
             }
         }
 
+        // Enter key to submit (Shift+Enter for new line)
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                searchForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
         // Auto-resize textareas
         [searchInput, chatInput].forEach(textarea => {
             textarea.addEventListener('input', function() {
