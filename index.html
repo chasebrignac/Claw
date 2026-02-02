@@ -231,12 +231,15 @@
             flex-direction: column;
         }
 
-        .chat-messages {
+        .chat-wrapper {
             flex: 1;
             overflow-y: auto;
             max-width: 800px;
             margin: 0 auto;
             width: 100%;
+        }
+
+        .chat-messages {
             padding: 20px;
         }
 
@@ -521,6 +524,10 @@
                 padding: 80px 20px 20px;
             }
 
+            .chat-wrapper {
+                width: 100%;
+            }
+
             .chat-messages {
                 padding: 10px;
             }
@@ -782,16 +789,9 @@
 
         /* Management Section */
         .management-section {
-            position: relative;
-            z-index: 1;
-            padding: 40px 20px 100px;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-
-        .management-section.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            padding: 40px 20px 60px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .management-grid {
@@ -1224,106 +1224,6 @@
         </div>
     </section>
 
-    <!-- Management Cards Section (hidden when chat is active) -->
-    <section class="management-section" id="managementSection">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="management-grid">
-                <!-- Runtime Card -->
-                <div class="management-card">
-                    <div class="card-glow"></div>
-                    <div class="management-card-content">
-                        <h2 class="management-card-title">Runtime</h2>
-                        <div class="status-pills">
-                            <span class="status-pill status-running">Running</span>
-                            <span class="status-pill status-billing">Billing active</span>
-                        </div>
-                        <p class="status-text">Desired capacity: 1. Last seen: -.</p>
-                        <div class="management-buttons">
-                            <button class="management-btn-primary">Stop</button>
-                            <button class="management-btn-secondary">Refresh status</button>
-                        </div>
-                        <div class="management-divider"></div>
-                        <h3 class="management-subtitle">Update OpenClaw</h3>
-                        <p class="management-desc">Restart the runtime to pull the latest OpenClaw build.</p>
-                        <button class="management-btn-secondary">Restart & update</button>
-                    </div>
-                </div>
-
-                <!-- Telegram Pairing Card -->
-                <div class="management-card">
-                    <div class="card-glow"></div>
-                    <div class="management-card-content">
-                        <h2 class="management-card-title">Telegram pairing</h2>
-                        <label class="management-label">Telegram bot token</label>
-                        <input class="management-input" placeholder="123456:ABCDEF..." readonly />
-                        <button class="management-btn-primary">Save Telegram settings</button>
-                        <p class="management-desc">Pair once in Telegram, then your OpenClaw stays linked.</p>
-                    </div>
-                </div>
-
-                <!-- Agent Logs Card -->
-                <div class="management-card">
-                    <div class="card-glow"></div>
-                    <div class="management-card-content">
-                        <div class="management-header">
-                            <h2 class="management-card-title">Agent logs</h2>
-                            <button class="management-btn-small">Clear</button>
-                        </div>
-                        <pre class="agent-logs">{
-  "subsystem": "gateway",
-  "message": "listening on ws://0.0.0.0:18789",
-  "level": "INFO"
-}</pre>
-                    </div>
-                </div>
-
-                <!-- Model Settings Card -->
-                <div class="management-card">
-                    <div class="card-glow"></div>
-                    <div class="management-card-content">
-                        <h2 class="management-card-title">Model settings</h2>
-                        <p class="management-desc">Pick which model powers this OpenClaw.</p>
-                        <label class="management-label">Model</label>
-                        <select class="management-input">
-                            <option>Kimi K2.5 (free) · Free</option>
-                            <option>Claude Opus 4.5</option>
-                            <option>Claude Sonnet 4</option>
-                        </select>
-                        <p class="management-hint">Free tier (NVIDIA API)</p>
-                        <button class="management-btn-primary">Save model</button>
-                    </div>
-                </div>
-
-                <!-- API Keys Card -->
-                <div class="management-card management-card-wide">
-                    <div class="card-glow"></div>
-                    <div class="management-card-content">
-                        <div class="management-header">
-                            <div>
-                                <h2 class="management-card-title">API keys for this OpenClaw</h2>
-                                <p class="management-desc">Paste API keys once. They are stored in Secrets Manager and injected as environment variables on every boot.</p>
-                            </div>
-                            <button class="management-btn-secondary">Add Key</button>
-                        </div>
-                        <div class="api-keys-list">
-                            <div class="api-key-row">
-                                <span class="api-key-name">API_KEY_NAME_3</span>
-                                <span class="api-key-value">•••••••• (saved)</span>
-                                <button class="api-key-remove">Remove</button>
-                            </div>
-                            <div class="api-key-row">
-                                <span class="api-key-name">API_KEY_NAME_4</span>
-                                <span class="api-key-value">•••••••• (saved)</span>
-                                <button class="api-key-remove">Remove</button>
-                            </div>
-                        </div>
-                        <button class="management-btn-primary">Save API keys</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Announcement Banner -->
     <div class="announcement">
         <span class="announcement-text">Claw AI: Your cosmic guide powered by advanced AI</span>
@@ -1334,7 +1234,107 @@
     <div class="chat-container" id="chatContainer">
         <button class="back-btn" id="backBtn">← Back to Home</button>
 
-        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-wrapper">
+            <div class="chat-messages" id="chatMessages"></div>
+
+            <!-- Management Cards Section (inside chat, scrollable) -->
+            <section class="management-section" id="managementSection">
+                <div class="management-grid">
+                    <!-- Runtime Card -->
+                    <div class="management-card">
+                        <div class="card-glow"></div>
+                        <div class="management-card-content">
+                            <h2 class="management-card-title">Runtime</h2>
+                            <div class="status-pills">
+                                <span class="status-pill status-running">Running</span>
+                                <span class="status-pill status-billing">Billing active</span>
+                            </div>
+                            <p class="status-text">Desired capacity: 1. Last seen: -.</p>
+                            <div class="management-buttons">
+                                <button class="management-btn-primary">Stop</button>
+                                <button class="management-btn-secondary">Refresh status</button>
+                            </div>
+                            <div class="management-divider"></div>
+                            <h3 class="management-subtitle">Update OpenClaw</h3>
+                            <p class="management-desc">Restart the runtime to pull the latest OpenClaw build.</p>
+                            <button class="management-btn-secondary">Restart & update</button>
+                        </div>
+                    </div>
+
+                    <!-- Telegram Pairing Card -->
+                    <div class="management-card">
+                        <div class="card-glow"></div>
+                        <div class="management-card-content">
+                            <h2 class="management-card-title">Telegram pairing</h2>
+                            <label class="management-label">Telegram bot token</label>
+                            <input class="management-input" placeholder="123456:ABCDEF..." readonly />
+                            <button class="management-btn-primary">Save Telegram settings</button>
+                            <p class="management-desc">Pair once in Telegram, then your OpenClaw stays linked.</p>
+                        </div>
+                    </div>
+
+                    <!-- Agent Logs Card -->
+                    <div class="management-card">
+                        <div class="card-glow"></div>
+                        <div class="management-card-content">
+                            <div class="management-header">
+                                <h2 class="management-card-title">Agent logs</h2>
+                                <button class="management-btn-small">Clear</button>
+                            </div>
+                            <pre class="agent-logs">{
+  "subsystem": "gateway",
+  "message": "listening on ws://0.0.0.0:18789",
+  "level": "INFO"
+}</pre>
+                        </div>
+                    </div>
+
+                    <!-- Model Settings Card -->
+                    <div class="management-card">
+                        <div class="card-glow"></div>
+                        <div class="management-card-content">
+                            <h2 class="management-card-title">Model settings</h2>
+                            <p class="management-desc">Pick which model powers this OpenClaw.</p>
+                            <label class="management-label">Model</label>
+                            <select class="management-input">
+                                <option>Kimi K2.5 (free) · Free</option>
+                                <option>Claude Opus 4.5</option>
+                                <option>Claude Sonnet 4</option>
+                            </select>
+                            <p class="management-hint">Free tier (NVIDIA API)</p>
+                            <button class="management-btn-primary">Save model</button>
+                        </div>
+                    </div>
+
+                    <!-- API Keys Card -->
+                    <div class="management-card management-card-wide">
+                        <div class="card-glow"></div>
+                        <div class="management-card-content">
+                            <div class="management-header">
+                                <div>
+                                    <h2 class="management-card-title">API keys for this OpenClaw</h2>
+                                    <p class="management-desc">Paste API keys once. They are stored in Secrets Manager and injected as environment variables on every boot.</p>
+                                </div>
+                                <button class="management-btn-secondary">Add Key</button>
+                            </div>
+                            <div class="api-keys-list">
+                                <div class="api-key-row">
+                                    <span class="api-key-name">API_KEY_NAME_3</span>
+                                    <span class="api-key-value">•••••••• (saved)</span>
+                                    <button class="api-key-remove">Remove</button>
+                                </div>
+                                <div class="api-key-row">
+                                    <span class="api-key-name">API_KEY_NAME_4</span>
+                                    <span class="api-key-value">•••••••• (saved)</span>
+                                    <button class="api-key-remove">Remove</button>
+                                </div>
+                            </div>
+                            <button class="management-btn-primary">Save API keys</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <div class="chat-input-container">
             <form class="search-form" id="chatForm">
@@ -1387,20 +1387,10 @@
         backBtn.addEventListener('click', () => {
             chatContainer.classList.remove('active');
             chatMessages.innerHTML = '';
-            // Show all background sections when exiting chat
-            document.querySelector('.cards-section').style.display = 'block';
-            document.querySelector('.pricing-section').style.display = 'block';
-            document.getElementById('managementSection').style.display = 'block';
-            document.querySelector('.announcement').style.display = 'flex';
         });
 
         function startChat(query) {
             chatContainer.classList.add('active');
-            // Hide all background sections when chat is active
-            document.querySelector('.cards-section').style.display = 'none';
-            document.querySelector('.pricing-section').style.display = 'none';
-            document.getElementById('managementSection').style.display = 'none';
-            document.querySelector('.announcement').style.display = 'none';
             addMessage(query, 'user');
             simulateResponse(query);
         }
