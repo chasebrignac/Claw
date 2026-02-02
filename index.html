@@ -779,6 +779,300 @@
                 padding: 14px 32px;
             }
         }
+
+        /* Management Section */
+        .management-section {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px 100px;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .management-section.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .management-card {
+            position: relative;
+        }
+
+        .management-card-wide {
+            grid-column: 1 / -1;
+        }
+
+        .management-card-content {
+            position: relative;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .management-card:hover .management-card-content {
+            transform: translateY(-4px);
+            border-color: rgba(109, 179, 242, 0.3);
+        }
+
+        .management-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .management-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .status-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .status-pill {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .status-running {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .status-billing {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .management-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .management-btn-primary {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #6db3f2 0%, #9b7eef 100%);
+            border: none;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .management-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(109, 179, 242, 0.4);
+        }
+
+        .management-btn-secondary {
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .management-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(109, 179, 242, 0.4);
+        }
+
+        .management-btn-small {
+            padding: 6px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .management-btn-small:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .management-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+
+        .management-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .management-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .management-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .management-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .management-input:focus {
+            outline: none;
+            border-color: rgba(109, 179, 242, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .management-hint {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 12px;
+        }
+
+        .agent-logs {
+            background: rgba(0, 0, 0, 0.6);
+            color: #10b981;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            overflow-x: auto;
+            max-height: 200px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .api-keys-list {
+            margin-bottom: 16px;
+        }
+
+        .api-key-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .api-key-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            min-width: 140px;
+        }
+
+        .api-key-value {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            flex: 1;
+        }
+
+        .api-key-remove {
+            padding: 6px 12px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            background: transparent;
+            color: rgba(239, 68, 68, 0.8);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .api-key-remove:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        /* Management mobile responsive */
+        @media (max-width: 768px) {
+            .management-section {
+                padding: 30px 15px 80px;
+            }
+
+            .management-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .management-card-content {
+                padding: 20px;
+            }
+
+            .management-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .api-key-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .api-key-name {
+                min-width: auto;
+            }
+
+            .management-buttons {
+                flex-direction: column;
+            }
+
+            .management-btn-primary,
+            .management-btn-secondary {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -930,6 +1224,106 @@
         </div>
     </section>
 
+    <!-- Management Cards Section (hidden when chat is active) -->
+    <section class="management-section" id="managementSection">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="management-grid">
+                <!-- Runtime Card -->
+                <div class="management-card">
+                    <div class="card-glow"></div>
+                    <div class="management-card-content">
+                        <h2 class="management-card-title">Runtime</h2>
+                        <div class="status-pills">
+                            <span class="status-pill status-running">Running</span>
+                            <span class="status-pill status-billing">Billing active</span>
+                        </div>
+                        <p class="status-text">Desired capacity: 1. Last seen: -.</p>
+                        <div class="management-buttons">
+                            <button class="management-btn-primary">Stop</button>
+                            <button class="management-btn-secondary">Refresh status</button>
+                        </div>
+                        <div class="management-divider"></div>
+                        <h3 class="management-subtitle">Update OpenClaw</h3>
+                        <p class="management-desc">Restart the runtime to pull the latest OpenClaw build.</p>
+                        <button class="management-btn-secondary">Restart & update</button>
+                    </div>
+                </div>
+
+                <!-- Telegram Pairing Card -->
+                <div class="management-card">
+                    <div class="card-glow"></div>
+                    <div class="management-card-content">
+                        <h2 class="management-card-title">Telegram pairing</h2>
+                        <label class="management-label">Telegram bot token</label>
+                        <input class="management-input" placeholder="123456:ABCDEF..." readonly />
+                        <button class="management-btn-primary">Save Telegram settings</button>
+                        <p class="management-desc">Pair once in Telegram, then your OpenClaw stays linked.</p>
+                    </div>
+                </div>
+
+                <!-- Agent Logs Card -->
+                <div class="management-card">
+                    <div class="card-glow"></div>
+                    <div class="management-card-content">
+                        <div class="management-header">
+                            <h2 class="management-card-title">Agent logs</h2>
+                            <button class="management-btn-small">Clear</button>
+                        </div>
+                        <pre class="agent-logs">{
+  "subsystem": "gateway",
+  "message": "listening on ws://0.0.0.0:18789",
+  "level": "INFO"
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Model Settings Card -->
+                <div class="management-card">
+                    <div class="card-glow"></div>
+                    <div class="management-card-content">
+                        <h2 class="management-card-title">Model settings</h2>
+                        <p class="management-desc">Pick which model powers this OpenClaw.</p>
+                        <label class="management-label">Model</label>
+                        <select class="management-input">
+                            <option>Kimi K2.5 (free) · Free</option>
+                            <option>Claude Opus 4.5</option>
+                            <option>Claude Sonnet 4</option>
+                        </select>
+                        <p class="management-hint">Free tier (NVIDIA API)</p>
+                        <button class="management-btn-primary">Save model</button>
+                    </div>
+                </div>
+
+                <!-- API Keys Card -->
+                <div class="management-card management-card-wide">
+                    <div class="card-glow"></div>
+                    <div class="management-card-content">
+                        <div class="management-header">
+                            <div>
+                                <h2 class="management-card-title">API keys for this OpenClaw</h2>
+                                <p class="management-desc">Paste API keys once. They are stored in Secrets Manager and injected as environment variables on every boot.</p>
+                            </div>
+                            <button class="management-btn-secondary">Add Key</button>
+                        </div>
+                        <div class="api-keys-list">
+                            <div class="api-key-row">
+                                <span class="api-key-name">API_KEY_NAME_3</span>
+                                <span class="api-key-value">•••••••• (saved)</span>
+                                <button class="api-key-remove">Remove</button>
+                            </div>
+                            <div class="api-key-row">
+                                <span class="api-key-name">API_KEY_NAME_4</span>
+                                <span class="api-key-value">•••••••• (saved)</span>
+                                <button class="api-key-remove">Remove</button>
+                            </div>
+                        </div>
+                        <button class="management-btn-primary">Save API keys</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Announcement Banner -->
     <div class="announcement">
         <span class="announcement-text">Claw AI: Your cosmic guide powered by advanced AI</span>
@@ -993,10 +1387,20 @@
         backBtn.addEventListener('click', () => {
             chatContainer.classList.remove('active');
             chatMessages.innerHTML = '';
+            // Show all background sections when exiting chat
+            document.querySelector('.cards-section').style.display = 'block';
+            document.querySelector('.pricing-section').style.display = 'block';
+            document.getElementById('managementSection').style.display = 'block';
+            document.querySelector('.announcement').style.display = 'flex';
         });
 
         function startChat(query) {
             chatContainer.classList.add('active');
+            // Hide all background sections when chat is active
+            document.querySelector('.cards-section').style.display = 'none';
+            document.querySelector('.pricing-section').style.display = 'none';
+            document.getElementById('managementSection').style.display = 'none';
+            document.querySelector('.announcement').style.display = 'none';
             addMessage(query, 'user');
             simulateResponse(query);
         }
